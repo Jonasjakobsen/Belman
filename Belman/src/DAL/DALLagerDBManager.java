@@ -49,7 +49,6 @@ public class DALLagerDBManager extends DALBelmanDBManager {
                     + "WHERE Material.id = CoilType.materialId "
                     + "AND CoilType.id = StockItem.coilTypeId "
                     + "ORDER BY CoilType.code DESC";
-            System.out.println("loawdkaiowd");
             PreparedStatement ps = con.prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();

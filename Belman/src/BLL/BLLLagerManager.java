@@ -1,7 +1,6 @@
 package BLL;
 
 import BE.BELager;
-import BE.BEProduktion;
 import DAL.DALLagerDBManager;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.SQLException;

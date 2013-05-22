@@ -4,9 +4,7 @@
  */
 package APP;
 
-import GUI.GUIMain;
 import GUI.produktion.ProduktionForm;
-import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;

@@ -7,10 +7,7 @@ package GUI.produktion;
 import BE.BELager;
 import BE.BEProduktion;
 import BLL.BLLLagerManager;
-import BLL.BLLMaterialeManager;
 import BLL.BLLProduktionManager;
-import BLL.BLLSleeveManager;
-import BLL.BLLStockItemManager;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -30,11 +27,11 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
 
     private BLLProduktionManager promgr;
     private BLLLagerManager lagmgr;
-    private BLLSleeveManager slmgr;
-    private BLLStockItemManager stmgr;
-    private BLLMaterialeManager mmgr;
+//    private BLLSleeveManager slmgr;
+//    private BLLStockItemManager stmgr;
+//    private BLLMaterialeManager mmgr;
     private ProduktionFormTableModel promodel;
-    private ProduktionFormTableModel promodel2;
+    private SortOrdreTableModel sortmodel;
     private LagerTableModel lagmodel;
     private LagerTableModel lagmodel2;
     private BELager lager = null;
@@ -355,8 +352,8 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
 
         promgr = BLLProduktionManager.getInstance();
         promgr.addObserver(this);
-        promodel2 = new ProduktionFormTableModel(promgr.visOrdrer());
-        jtblVaelgOrdre.setModel(promodel2);
+        sortmodel = new SortOrdreTableModel(promgr.visOrdrer());
+        jtblVaelgOrdre.setModel(sortmodel);
     }
 
     private void centerTables() {
@@ -401,8 +398,8 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
                 public void valueChanged(ListSelectionEvent evt) {
                     int selectedRow = jtblVaelgOrdre.getSelectedRow();
                     BEProduktion p = promodel.getOrderByRow(selectedRow);
-                    clearFields();
-                    lagmodel.clear();
+//                    clearFields();
+//                    lagmodel.clear();
                     txtEmployeeNo.setText("" + p.getEmployeeNo());
                     txtWidth.setText("" + p.getWidth());
                     txtLength.setText("" + p.getCoilLength());
@@ -411,14 +408,14 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
                     try {
                         if (!promgr.getOrderByMaterial(p).isEmpty());
                         {
-                            promodel2 = new ProduktionFormTableModel(promgr.getOrderByMaterial(p));
-                            jtblSortOrdre.setModel(promodel2);
+                            sortmodel = new SortOrdreTableModel(promgr.getOrderByMaterial(p));
+                            jtblSortOrdre.setModel(sortmodel);
                             jtblSortOrdre.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
                                 @Override
                                 public void valueChanged(ListSelectionEvent evt) {
                                     
                                     int selectedRow = jtblSortOrdre.getSelectedRow();
-                                    BEProduktion q = promodel2.getOrderByMaterial(selectedRow);
+                                    BEProduktion q = sortmodel.getOrderByMaterial(selectedRow);
                                     clearFields();
                                     txtEmployeeNo.setText("" + q.getMaterialID());
                                     txtWidth.setText("" + q.getWidth());

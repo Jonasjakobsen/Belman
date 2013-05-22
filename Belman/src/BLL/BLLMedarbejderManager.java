@@ -1,8 +1,6 @@
 package BLL;
 
-import BE.BEMedarbejder;
 import DAL.DALMedarbejderDBManager;
-import java.util.ArrayList;
 
 /**
  * LagerManager The Business logic layer
