@@ -128,7 +128,7 @@ public class BEProduktion {
      * @param quantity - The quantity of finished products needed to be produced.
      * @param materialName - the name of the material used in the production order.
      */
-    public BEProduktion(int SOrderID, String pOrder, Date DueDate, Float quantity, String materialName, String status, Boolean urgent, int employeeNo, Float coilLength, Float coilWidth, String coilCode, BELager lager)
+    public BEProduktion(int SOrderID, String pOrder, Date DueDate, Float quantity, String materialName, String status, Boolean urgent, int employeeNo, String coilCode, BELager lager)
     {
         this.SOrderID = SOrderID;
         this.POrder = pOrder;
@@ -138,8 +138,8 @@ public class BEProduktion {
         this.status = status;
         this.Urgent = urgent;
         this.employeeNo = employeeNo;
-        this.coilLength = coilLength;
-        this.Width = coilWidth;
+//        this.coilLength = coilLength;
+//        this.Width = coilWidth;
         this.coilCode = coilCode;
         this.lager = lager;
     }   

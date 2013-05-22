@@ -47,8 +47,8 @@ public class DALLagerDBManager extends DALBelmanDBManager {
             String sql = "SELECT CoilType.code, Material.density, Stockitem.stockQuantity "                    
                     + "FROM Material, CoilType, StockItem "
                     + "WHERE Material.id = CoilType.materialId "
-                    + "AND CoilType.id = StockItem.coilTypeId "
-                    + "ORDER BY CoilType.code DESC";
+                    + "AND CoilType.id = StockItem.coilTypeId ";
+//                    + "ORDER BY CoilType.code DESC";
             PreparedStatement ps = con.prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();

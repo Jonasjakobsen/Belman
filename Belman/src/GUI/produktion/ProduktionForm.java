@@ -70,7 +70,8 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         btngrpFilter = new javax.swing.ButtonGroup();
         lblIgangvaerendeProduktion = new javax.swing.JLabel();
@@ -127,10 +128,12 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
         jLabel1.setText("Order job in");
 
         jtblLager.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+            new Object [][]
+            {
 
             },
-            new String [] {
+            new String []
+            {
 
             }
         ));
@@ -139,8 +142,10 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
         jLabel2.setText("Stock");
 
         btnOk.setText("Ok");
-        btnOk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnOk.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnOkActionPerformed(evt);
             }
         });
@@ -332,15 +337,15 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
 
 
         lagmgr = new BLLLagerManager();
-//        lagmodel = new GUI.produktion.LagerTableModel(lagmgr.visLager());
-//        jtblLager.setModel(lagmodel);
+        lagmodel = new GUI.produktion.LagerTableModel(lagmgr.visLager());
+        jtblLager.setModel(lagmodel);
 
 
 
-//        lagmgr = BLLLagerManager.getInstance();
-//        lagmgr.addObserver(this);
-//        lagmodel2 = new LagerTableModel(lagmgr.visLager());
-//        jtblLager.setModel(lagmodel2);
+        lagmgr = BLLLagerManager.getInstance();
+        lagmgr.addObserver(this);
+        lagmodel2 = new LagerTableModel(lagmgr.visLager());
+        jtblLager.setModel(lagmodel2);
 
         promgr = BLLProduktionManager.getInstance();
         promgr.addObserver(this);
@@ -392,7 +397,7 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
                 @Override
                 public void valueChanged(ListSelectionEvent evt)
                 {
-                    sortmodel.clear();
+//                    sortmodel.clear();
                     int selectedStockRow = jtblLager.getSelectedRow();
                     BEProduktion p = promodel.getOrderByMaterial(selectedStockRow);
                     try
