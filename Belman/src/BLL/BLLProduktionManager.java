@@ -51,7 +51,12 @@ public class BLLProduktionManager extends Observable {
         return db.orderByMaterial();
     }
 
-    public ArrayList<BEProduktion> getOrderByMaterial(BEProduktion p) throws SQLServerException, SQLException {
+    public ArrayList<BEProduktion> getOrderByOrderMaterial(BEProduktion p) throws SQLServerException, SQLException {
+        return db.getOrderByOrderMaterial(p);
+    }
+
+    public ArrayList<BEProduktion> getOrderByMaterial(BEProduktion p) throws SQLServerException, SQLException
+    {
         return db.getOrderByMaterial(p);
     }
 }

@@ -8,12 +8,16 @@ import BE.BELager;
 import BE.BEProduktion;
 import BLL.BLLLagerManager;
 import BLL.BLLProduktionManager;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -23,7 +27,8 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author Christoffer
  */
-public class ProduktionForm extends javax.swing.JFrame implements Observer {
+public class ProduktionForm extends javax.swing.JFrame implements Observer
+{
 
     private BLLProduktionManager promgr;
     private BLLLagerManager lagmgr;
@@ -40,15 +45,16 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
     /**
      * Creates new form ProduktionForm
      */
-    public ProduktionForm() throws Exception {
+    public ProduktionForm() throws Exception
+    {
 //        super(parent, modal);
         constructTables();
         selectOrder();
         centerTables();
         addEnterKeyListeners();
     }
-    
-        public static ProduktionForm getInstance() throws Exception
+
+    public static ProduktionForm getInstance() throws Exception
     {
         if (instance == null)
         {
@@ -56,8 +62,6 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
         }
         return instance;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -97,9 +101,10 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Belman Produktion");
         setFocusTraversalPolicyProvider(true);
-        setMaximumSize(new java.awt.Dimension(780, 665));
-        setMinimumSize(new java.awt.Dimension(780, 665));
+        setMaximumSize(new java.awt.Dimension(1200, 800));
+        setMinimumSize(new java.awt.Dimension(1200, 800));
         setName("Belman produktion"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1200, 800));
 
         lblIgangvaerendeProduktion.setText("Choose an order to produce");
 
@@ -111,7 +116,7 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
         jtblSortOrdre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jscrpVaelgOrdre.setViewportView(jtblSortOrdre);
 
-        btnAfbyd.setText("Cancel");
+        btnAfbyd.setText("Close program");
         btnAfbyd.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -165,72 +170,61 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblIgangvaerendeProduktion, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jscrpProdOrdre, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-                            .addComponent(jscrpVaelgOrdre))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jscrpProdOrdre, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnAfbyd))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnOk)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtEmployeeNo)
-                                        .addComponent(jSeparator1)
-                                        .addComponent(txtLength)
-                                        .addComponent(txtWidth)
-                                        .addComponent(txtQuantity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jLabel2)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 48, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel1))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnOk, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtEmployeeNo)
+                                .addComponent(jSeparator1)
+                                .addComponent(txtLength)
+                                .addComponent(txtWidth)
+                                .addComponent(txtQuantity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblVaelgOrdre)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblVaelgOrdre)
-                            .addComponent(jLabel2))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jscrpVaelgOrdre, javax.swing.GroupLayout.PREFERRED_SIZE, 899, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAfbyd)))
                 .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jScrollPane1, jscrpProdOrdre, jscrpVaelgOrdre});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(7, 7, 7)
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnAfbyd))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtEmployeeNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtLength, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtWidth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5))
+                                .addComponent(txtWidth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,22 +234,29 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
                                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel7))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnOk)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(btnOk))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addComponent(jLabel5)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAfbyd))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblIgangvaerendeProduktion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jscrpProdOrdre, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblIgangvaerendeProduktion)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jscrpProdOrdre, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1)))
+                        .addGap(18, 18, 18)
                         .addComponent(lblVaelgOrdre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jscrpVaelgOrdre, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)))
-                .addGap(11, 11, 11))
+                        .addComponent(jscrpVaelgOrdre, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         pack();
@@ -329,7 +330,8 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
     private javax.swing.JTextField txtWidth;
     // End of variables declaration//GEN-END:variables
 
-    private void constructTables() throws Exception {
+    private void constructTables() throws Exception
+    {
         initComponents();
         setLocationRelativeTo(this);
 
@@ -339,7 +341,7 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
 //        jtblLager.setModel(lagmodel);
 
 
-        
+
         lagmgr = BLLLagerManager.getInstance();
         lagmgr.addObserver(this);
         lagmodel2 = new LagerTableModel(lagmgr.visLager());
@@ -356,7 +358,8 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
         jtblVaelgOrdre.setModel(sortmodel);
     }
 
-    private void centerTables() {
+    private void centerTables()
+    {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         jtblVaelgOrdre.setDefaultRenderer(String.class, centerRenderer);
@@ -381,42 +384,79 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
 //            }
 //        }
 //    }
-
-    private void selectOrder() {
-        try {
+    private void selectOrder()
+    {
+        try
+        {
             promgr = BLLProduktionManager.getInstance();
             promgr.addObserver(this);
             promodel = new ProduktionFormTableModel(promgr.visOrdrer());
-            
+
             lagmgr = BLLLagerManager.getInstance();
             lagmgr.addObserver(this);
             lagmodel = new LagerTableModel(lagmgr.visLager());
             jtblVaelgOrdre.setModel(promodel);
 
-            jtblVaelgOrdre.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            jtblLager.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+            {
                 @Override
-                public void valueChanged(ListSelectionEvent evt) {
-//                    jtblSortOrdre.getSelectionModel().clearSelection();
+                public void valueChanged(ListSelectionEvent evt)
+                {
                     sortmodel.clear();
-                    int selectedRow = jtblVaelgOrdre.getSelectedRow();
-                    BEProduktion p = promodel.getOrderByRow(selectedRow);
-//                    clearFields();
-//                    lagmodel.clear();
-                    txtEmployeeNo.setText("" + p.getEmployeeNo());
-                    txtWidth.setText("" + p.getWidth());
-                    txtLength.setText("" + p.getCoilLength());
-                    txtQuantity.setText("" + p.getQuantity());
-                    
-                    
-                    try {
+                    int selectedStockRow = jtblLager.getSelectedRow();
+                    BEProduktion p = promodel.getOrderByMaterial(selectedStockRow);
+                    try
+                    {
                         if (!promgr.getOrderByMaterial(p).isEmpty());
                         {
                             sortmodel = new SortOrdreTableModel(promgr.getOrderByMaterial(p));
                             jtblSortOrdre.setModel(sortmodel);
-                            jtblSortOrdre.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+//                            jtblSortOrdre.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+//                            {
+//                                @Override
+//                                public void valueChanged(ListSelectionEvent evt)
+//                                {
+//                                    int selectedRow = jtblSortOrdre.getSelectedRow();
+//                                    BEProduktion p = sortmodel.getOrderByMaterial(selectedRow);
+//                                }
+//                            });
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        System.out.println("ERROR -" + e.getMessage());
+                    }
+                }
+            });
+
+
+            jtblVaelgOrdre.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+            {
+                @Override
+                public void valueChanged(ListSelectionEvent evt)
+                {
+                    sortmodel.clear();
+                    int selectedRow = jtblVaelgOrdre.getSelectedRow();
+                    jtblSortOrdre.getSelectionModel().clearSelection();
+                    BEProduktion p = promodel.getOrderByRow(selectedRow);
+                    clearFields();
+                    lagmodel.clear();
+                    txtEmployeeNo.setText("" + p.getEmployeeNo());
+                    txtWidth.setText("" + p.getWidth());
+                    txtLength.setText("" + p.getCoilLength());
+                    txtQuantity.setText("" + p.getQuantity());
+
+                    try
+                    {
+                        if (!promgr.getOrderByOrderMaterial(p).isEmpty());
+                        {
+                            sortmodel = new SortOrdreTableModel(promgr.getOrderByOrderMaterial(p));
+                            jtblSortOrdre.setModel(sortmodel);
+                            jtblSortOrdre.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+                            {
                                 @Override
-                                public void valueChanged(ListSelectionEvent evt) {
-                                    
+                                public void valueChanged(ListSelectionEvent evt)
+                                {
                                     int selectedRow = jtblSortOrdre.getSelectedRow();
                                     BEProduktion q = sortmodel.getOrderByMaterial(selectedRow);
                                     clearFields();
@@ -434,25 +474,29 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
 //                            lagmodel2 = new LagerTableModel(lagmgr.getLagerById(selectedRow));
 //                            jtblLager.setModel(lagmodel2);
 //                        }
-                    } catch (Exception e) {
+                    }
+                    catch (Exception e)
+                    {
                         System.out.println("ERROR - Line 417 " + e.getMessage());
                     }
                 }
-                
 
-                private void clearFields() {
+                private void clearFields()
+                {
                     txtEmployeeNo.setText("");
                     txtWidth.setText("");
                     txtLength.setText("");
                     txtQuantity.setText("");
                 }
             });
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             System.out.println("ERROR - Line 349 " + e.getMessage());
         }
     }
-    
-private void addEnterKeyListeners()
+
+    private void addEnterKeyListeners()
     {
         KeyListener enterListener = new KeyAdapter()
         {
@@ -476,5 +520,4 @@ private void addEnterKeyListeners()
     {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
 }
