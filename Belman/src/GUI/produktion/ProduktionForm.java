@@ -396,6 +396,8 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
             jtblVaelgOrdre.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
                 @Override
                 public void valueChanged(ListSelectionEvent evt) {
+//                    jtblSortOrdre.getSelectionModel().clearSelection();
+                    sortmodel.clear();
                     int selectedRow = jtblVaelgOrdre.getSelectedRow();
                     BEProduktion p = promodel.getOrderByRow(selectedRow);
 //                    clearFields();
@@ -404,6 +406,7 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
                     txtWidth.setText("" + p.getWidth());
                     txtLength.setText("" + p.getCoilLength());
                     txtQuantity.setText("" + p.getQuantity());
+                    
                     
                     try {
                         if (!promgr.getOrderByMaterial(p).isEmpty());
@@ -419,7 +422,7 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer {
                                     clearFields();
                                     txtEmployeeNo.setText("" + q.getMaterialID());
                                     txtWidth.setText("" + q.getWidth());
-                                    txtLength.setText("" + q.getWidth());
+                                    txtLength.setText("" + q.getCoilLength());
                                     txtQuantity.setText("" + q.getQuantity());
                                 }
                             });
