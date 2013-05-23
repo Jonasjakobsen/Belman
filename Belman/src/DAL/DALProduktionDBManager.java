@@ -56,7 +56,11 @@ public class DALProduktionDBManager extends DALBelmanDBManager {
 //+"AND CoilType.id = StockItem.coilTypeId "
 //                   + "ORDER BY urgent DESC";
            
-            "SELECT ProductionOrder.sOrderId, ProductionOrder.pOrder, ProductionOrder.dueDate, ProductionOrder.quantity, Coiltype.code, ProductionOrder.[status], ProductionOrder.urgent, Sleeve.Employeeid, StockItem.[length], CoilType.width "
+            "SELECT ProductionOrder.sOrderId, ProductionOrder.pOrder, "
+            + "ProductionOrder.dueDate, ProductionOrder.quantity, "
+            + "Coiltype.code, ProductionOrder.[status], "
+            + "ProductionOrder.urgent, Sleeve.Employeeid, "
+            + "StockItem.[length], CoilType.width "
             +"FROM ProductionOrder, Material, Sleeve, StockItem, CoilType "
             +"WHERE ProductionOrder.pOrderId = Sleeve.pOrderId "
             +"AND Sleeve.materialId = Material.id  "

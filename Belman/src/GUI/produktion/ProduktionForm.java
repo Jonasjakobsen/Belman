@@ -97,6 +97,7 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Belman Produktion");
@@ -162,6 +163,15 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
 
         jLabel7.setText("Status:");
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,23 +189,26 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 48, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel1))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnOk, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtEmployeeNo)
-                                .addComponent(jSeparator1)
-                                .addComponent(txtLength)
-                                .addComponent(txtWidth)
-                                .addComponent(txtQuantity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel1))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnOk, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtEmployeeNo)
+                                        .addComponent(jSeparator1)
+                                        .addComponent(txtLength)
+                                        .addComponent(txtWidth)
+                                        .addComponent(txtQuantity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButton1)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblVaelgOrdre)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -246,8 +259,14 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblIgangvaerendeProduktion)
                                     .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jscrpProdOrdre, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jscrpProdOrdre, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton1)
+                                        .addGap(135, 135, 135))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -269,6 +288,16 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         System.out.println("LOLOLOL");
     }//GEN-LAST:event_btnOkActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        jtblVaelgOrdre.getSelectionModel().clearSelection();
+        promodel.clear();
+        jtblSortOrdre.getSelectionModel().clearSelection();
+        lagmodel.clear();
+        sortmodel.clear();
+
+    }//GEN-LAST:event_jButton1ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -307,6 +336,7 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
     private javax.swing.JButton btnAfbyd;
     private javax.swing.JButton btnOk;
     private javax.swing.ButtonGroup btngrpFilter;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -397,24 +427,37 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
                 @Override
                 public void valueChanged(ListSelectionEvent evt)
                 {
-//                    sortmodel.clear();
+                    sortmodel.clear();
                     int selectedStockRow = jtblLager.getSelectedRow();
+                    if(selectedStockRow == -1)
+                    {
+                        return;
+                    }
                     BEProduktion p = promodel.getOrderByMaterial(selectedStockRow);
+                    lagmodel.clear();
                     try
                     {
                         if (!promgr.getOrderByMaterial(p).isEmpty());
                         {
                             sortmodel = new SortOrdreTableModel(promgr.getOrderByMaterial(p));
                             jtblSortOrdre.setModel(sortmodel);
-//                            jtblSortOrdre.getSelectionModel().addListSelectionListener(new ListSelectionListener()
-//                            {
-//                                @Override
-//                                public void valueChanged(ListSelectionEvent evt)
-//                                {
-//                                    int selectedRow = jtblSortOrdre.getSelectedRow();
-//                                    BEProduktion p = sortmodel.getOrderByMaterial(selectedRow);
-//                                }
-//                            });
+                            jtblSortOrdre.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+                            {
+                                @Override
+                                public void valueChanged(ListSelectionEvent evt)
+                                {
+                                    int selectedRow = jtblSortOrdre.getSelectedRow();
+                                    if(selectedRow == -1)
+                                    {
+                                        return;
+                                    }
+                                    BEProduktion p = sortmodel.getOrderByRow(selectedRow);
+                                    txtEmployeeNo.setText("" + p.getEmployeeNo());
+                                    txtWidth.setText("" + p.getWidth());
+                                    txtLength.setText("" + p.getCoilLength());
+                                    txtQuantity.setText("" + p.getQuantity());
+                                }
+                            });
                         }
                     }
                     catch (Exception e)
@@ -432,6 +475,10 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
                 {
                     sortmodel.clear();
                     int selectedRow = jtblVaelgOrdre.getSelectedRow();
+                    if (selectedRow == -1)
+                    {
+                        return;
+                    }
                     jtblSortOrdre.getSelectionModel().clearSelection();
                     BEProduktion p = promodel.getOrderByRow(selectedRow);
                     clearFields();
@@ -453,12 +500,16 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
                                 public void valueChanged(ListSelectionEvent evt)
                                 {
                                     int selectedRow = jtblSortOrdre.getSelectedRow();
-                                    BEProduktion q = sortmodel.getOrderByMaterial(selectedRow);
+                                    if(selectedRow == -1)
+                                    {
+                                        return;
+                                    }
+                                    BEProduktion p = sortmodel.getOrderByRow(selectedRow);
                                     clearFields();
-                                    txtEmployeeNo.setText("" + q.getMaterialID());
-                                    txtWidth.setText("" + q.getWidth());
-                                    txtLength.setText("" + q.getCoilLength());
-                                    txtQuantity.setText("" + q.getQuantity());
+                                    txtEmployeeNo.setText("" + p.getMaterialID());
+                                    txtWidth.setText("" + p.getWidth());
+                                    txtLength.setText("" + p.getCoilLength());
+                                    txtQuantity.setText("" + p.getQuantity());
                                 }
                             });
                         }
