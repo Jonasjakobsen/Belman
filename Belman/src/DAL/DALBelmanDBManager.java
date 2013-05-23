@@ -30,6 +30,7 @@ public abstract class DALBelmanDBManager
         ds = new SQLServerDataSource();
 
         ds.setServerName(props.getProperty("SERVER"));
+        ds.setInstanceName(props.getProperty("INSTANCENAME"));
         ds.setPortNumber(Integer.parseInt(props.getProperty("PORT")));
         ds.setDatabaseName(props.getProperty("DATABASE"));
         ds.setUser(props.getProperty("USER"));

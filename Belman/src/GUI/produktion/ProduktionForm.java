@@ -37,8 +37,9 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
 //    private BLLMaterialeManager mmgr;
     private ProduktionFormTableModel promodel;
     private SortOrdreTableModel sortmodel;
+    private SortLagerTableModel sortlagermodel;
     private LagerTableModel lagmodel;
-    private LagerTableModel lagmodel2;
+
     private BELager lager = null;
     private static ProduktionForm instance = null;
 
@@ -49,8 +50,9 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
     {
 //        super(parent, modal);
         constructTables();
-        selectOrder();
         centerTables();
+        selectOrder();
+        selectStockItem();
         addEnterKeyListeners();
     }
 
@@ -97,7 +99,6 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Belman Produktion");
@@ -110,6 +111,7 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
         lblIgangvaerendeProduktion.setText("Choose an order to produce");
 
         jtblVaelgOrdre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jtblVaelgOrdre.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jscrpProdOrdre.setViewportView(jtblVaelgOrdre);
 
         lblVaelgOrdre.setText("Orders matching material in guillotine");
@@ -138,6 +140,7 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
 
             }
         ));
+        jtblLager.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jtblLager);
 
         jLabel2.setText("Stock");
@@ -163,15 +166,6 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
 
         jLabel7.setText("Status:");
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,26 +183,23 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 48, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel1))
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnOk, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtEmployeeNo)
-                                        .addComponent(jSeparator1)
-                                        .addComponent(txtLength)
-                                        .addComponent(txtWidth)
-                                        .addComponent(txtQuantity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jButton1)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel1))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnOk, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtEmployeeNo)
+                                .addComponent(jSeparator1)
+                                .addComponent(txtLength)
+                                .addComponent(txtWidth)
+                                .addComponent(txtQuantity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblVaelgOrdre)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -259,14 +250,8 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblIgangvaerendeProduktion)
                                     .addComponent(jLabel1))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jscrpProdOrdre, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton1)
-                                        .addGap(135, 135, 135))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jscrpProdOrdre, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -288,16 +273,6 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         System.out.println("LOLOLOL");
     }//GEN-LAST:event_btnOkActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
-    {//GEN-HEADEREND:event_jButton1ActionPerformed
-        jtblVaelgOrdre.getSelectionModel().clearSelection();
-        promodel.clear();
-        jtblSortOrdre.getSelectionModel().clearSelection();
-        lagmodel.clear();
-        sortmodel.clear();
-
-    }//GEN-LAST:event_jButton1ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -336,7 +311,6 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
     private javax.swing.JButton btnAfbyd;
     private javax.swing.JButton btnOk;
     private javax.swing.ButtonGroup btngrpFilter;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -366,21 +340,29 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
         setLocationRelativeTo(this);
 
 
-        lagmgr = new BLLLagerManager();
-        lagmodel = new GUI.produktion.LagerTableModel(lagmgr.visLager());
-        jtblLager.setModel(lagmodel);
-
-
+//        lagmgr = new BLLLagerManager();
+//        lagmodel = new GUI.produktion.LagerTableModel(lagmgr.visLager());
+//        jtblLager.setModel(lagmodel);
 
         lagmgr = BLLLagerManager.getInstance();
         lagmgr.addObserver(this);
-        lagmodel2 = new LagerTableModel(lagmgr.visLager());
-        jtblLager.setModel(lagmodel2);
+        lagmodel = new LagerTableModel(lagmgr.visLager());
+        jtblLager.setModel(lagmodel);
 
         promgr = BLLProduktionManager.getInstance();
         promgr.addObserver(this);
         sortmodel = new SortOrdreTableModel(promgr.visOrdrer());
         jtblVaelgOrdre.setModel(sortmodel);
+        promodel = new ProduktionFormTableModel(promgr.visOrdrer());
+        jtblVaelgOrdre.setModel(promodel);
+//        
+//        promgr = BLLProduktionManager.getInstance();
+//        promgr.addObserver(this);
+
+//        lagmgr = BLLLagerManager.getInstance();
+//        lagmgr.addObserver(this);
+//        lagmodel = new LagerTableModel(lagmgr.visLager());
+        
     }
 
     private void centerTables()
@@ -400,146 +382,29 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
         jtblLager.setDefaultRenderer(int.class, centerRenderer);
     }
 
-//    @Override
-//    public void update(Observable o, Object arg) {
-//        if (o instanceof BLLProduktionManager) {
-//            try {
-//                promodel.setCollection(promgr.visOrdrer());
-//            } catch (Exception e) {
-//            }
-//        }
-//    }
-    private void selectOrder()
+    
+    private void clearFields()
     {
-        try
-        {
-            promgr = BLLProduktionManager.getInstance();
-            promgr.addObserver(this);
-            promodel = new ProduktionFormTableModel(promgr.visOrdrer());
-
-            lagmgr = BLLLagerManager.getInstance();
-            lagmgr.addObserver(this);
-            lagmodel = new LagerTableModel(lagmgr.visLager());
-            jtblVaelgOrdre.setModel(promodel);
-
-            jtblLager.getSelectionModel().addListSelectionListener(new ListSelectionListener()
-            {
-                @Override
-                public void valueChanged(ListSelectionEvent evt)
-                {
-                    sortmodel.clear();
-                    int selectedStockRow = jtblLager.getSelectedRow();
-                    if(selectedStockRow == -1)
-                    {
-                        return;
-                    }
-                    BEProduktion p = promodel.getOrderByMaterial(selectedStockRow);
-                    lagmodel.clear();
-                    try
-                    {
-                        if (!promgr.getOrderByMaterial(p).isEmpty());
-                        {
-                            sortmodel = new SortOrdreTableModel(promgr.getOrderByMaterial(p));
-                            jtblSortOrdre.setModel(sortmodel);
-                            jtblSortOrdre.getSelectionModel().addListSelectionListener(new ListSelectionListener()
-                            {
-                                @Override
-                                public void valueChanged(ListSelectionEvent evt)
-                                {
-                                    int selectedRow = jtblSortOrdre.getSelectedRow();
-                                    if(selectedRow == -1)
-                                    {
-                                        return;
-                                    }
-                                    BEProduktion p = sortmodel.getOrderByRow(selectedRow);
-                                    txtEmployeeNo.setText("" + p.getEmployeeNo());
-                                    txtWidth.setText("" + p.getWidth());
-                                    txtLength.setText("" + p.getCoilLength());
-                                    txtQuantity.setText("" + p.getQuantity());
-                                }
-                            });
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        System.out.println("ERROR -" + e.getMessage());
-                    }
-                }
-            });
-
-
-            jtblVaelgOrdre.getSelectionModel().addListSelectionListener(new ListSelectionListener()
-            {
-                @Override
-                public void valueChanged(ListSelectionEvent evt)
-                {
-                    sortmodel.clear();
-                    int selectedRow = jtblVaelgOrdre.getSelectedRow();
-                    if (selectedRow == -1)
-                    {
-                        return;
-                    }
-                    jtblSortOrdre.getSelectionModel().clearSelection();
-                    BEProduktion p = promodel.getOrderByRow(selectedRow);
-                    clearFields();
-                    lagmodel.clear();
-                    txtEmployeeNo.setText("" + p.getEmployeeNo());
-                    txtWidth.setText("" + p.getWidth());
-                    txtLength.setText("" + p.getCoilLength());
-                    txtQuantity.setText("" + p.getQuantity());
-
-                    try
-                    {
-                        if (!promgr.getOrderByOrderMaterial(p).isEmpty());
-                        {
-                            sortmodel = new SortOrdreTableModel(promgr.getOrderByOrderMaterial(p));
-                            jtblSortOrdre.setModel(sortmodel);
-                            jtblSortOrdre.getSelectionModel().addListSelectionListener(new ListSelectionListener()
-                            {
-                                @Override
-                                public void valueChanged(ListSelectionEvent evt)
-                                {
-                                    int selectedRow = jtblSortOrdre.getSelectedRow();
-                                    if(selectedRow == -1)
-                                    {
-                                        return;
-                                    }
-                                    BEProduktion p = sortmodel.getOrderByRow(selectedRow);
-                                    clearFields();
-                                    txtEmployeeNo.setText("" + p.getMaterialID());
-                                    txtWidth.setText("" + p.getWidth());
-                                    txtLength.setText("" + p.getCoilLength());
-                                    txtQuantity.setText("" + p.getQuantity());
-                                }
-                            });
-                        }
-//                        int selectedRow = jtblVaelgOrdre.getSelectedRow();
-//                        BELager l = lagmodel.getLagerByRow(selectedRow);
-//                        if (!lagmgr.getLagerById(selectedRow).isEmpty());
-//                        {
-//                            lagmodel2 = new LagerTableModel(lagmgr.getLagerById(selectedRow));
-//                            jtblLager.setModel(lagmodel2);
-//                        }
-                    }
-                    catch (Exception e)
-                    {
-                        System.out.println("ERROR - Line 417 " + e.getMessage());
-                    }
-                }
-
-                private void clearFields()
-                {
-                    txtEmployeeNo.setText("");
-                    txtWidth.setText("");
-                    txtLength.setText("");
-                    txtQuantity.setText("");
-                }
-            });
-        }
-        catch (Exception e)
-        {
-            System.out.println("ERROR - Line 349 " + e.getMessage());
-        }
+        txtEmployeeNo.setText("");
+        txtWidth.setText("");
+        txtLength.setText("");
+        txtQuantity.setText("");
+    }
+    
+    private void fillProFields(BEProduktion p)
+    {
+        txtEmployeeNo.setText("" + p.getMaterialID());
+        txtWidth.setText("" + p.getWidth());
+        txtLength.setText("" + p.getCoilLength());
+        txtQuantity.setText("" + p.getQuantity());
+    }
+    
+    private void fillFields(BELager p)
+    {
+        txtEmployeeNo.setText("" + p.getMaterialID());
+        txtWidth.setText("" + p.getWidth());
+        txtLength.setText("" + p.getProduktion().getCoilLength());
+        txtQuantity.setText("" + p.getProduktion().getQuantity());
     }
 
     private void addEnterKeyListeners()
@@ -560,6 +425,103 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
         txtWidth.addKeyListener(enterListener);
         txtQuantity.addKeyListener(enterListener);
     }
+
+
+    private void selectStockItem()
+    {
+        jtblLager.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+            {
+                @Override
+                public void valueChanged(ListSelectionEvent evt)
+                {
+                    sortmodel.clear();
+                    int selectedStockRow = jtblLager.getSelectedRow();
+                    if(selectedStockRow == -1)
+                    {
+                        return;
+                    }
+                    BELager p = lagmodel.getLagerByRow(selectedStockRow);
+//                    lagmodel.clear();
+                    try
+                    {
+                        if (!lagmgr.getStockByOrderMaterial(p).isEmpty());
+                        {
+                            sortlagermodel = new SortLagerTableModel(lagmgr.getStockByOrderMaterial(p));
+                            jtblSortOrdre.setModel(sortlagermodel);
+                            jtblSortOrdre.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+                            {
+                                @Override
+                                public void valueChanged(ListSelectionEvent evt)
+                                {
+                                    int selectedRow = jtblSortOrdre.getSelectedRow();
+                                    if(selectedRow == -1)
+                                    {
+                                        return;
+                                    }
+                                    BELager p = sortlagermodel.getOrderByRow(selectedRow);
+//                                    clearFields();
+//                                    fillFields(p);
+                                }
+                            });
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        System.out.println("ERROR -" + e.getMessage());
+                    }
+                }
+            });
+    }
+    
+    private void selectOrder()
+    {
+        jtblVaelgOrdre.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+        {
+            @Override
+            public void valueChanged(ListSelectionEvent evt)
+            {
+                sortmodel.clear();
+                int selectedRow = jtblVaelgOrdre.getSelectedRow();
+                if (selectedRow == -1)
+                {
+                    return;
+                }
+    //                    jtblSortOrdre.getSelectionModel().clearSelection();
+                BEProduktion p = promodel.getOrderByRow(selectedRow);
+    //                    clearFields();
+    //                    fillProFields(p);
+                try
+                {
+                    if (!promgr.getOrderByOrderMaterial(p).isEmpty());
+                    {
+                        sortmodel = new SortOrdreTableModel(promgr.getOrderByOrderMaterial(p));
+                        jtblSortOrdre.setModel(sortmodel);
+                        jtblSortOrdre.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+                        {
+                            @Override
+                            public void valueChanged(ListSelectionEvent evt)
+                            {
+                                int selectedRow = jtblSortOrdre.getSelectedRow();
+                                if(selectedRow == -1)
+                                {
+                                    return;
+                                }
+                                BEProduktion p = sortmodel.getOrderByRow(selectedRow);
+                                clearFields();
+                                fillProFields(p);
+
+                            }
+                        });
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.out.println("ERROR - Line 417 " + e.getMessage());
+                }
+            }
+        });
+    }
+    
 
     @Override
     public void update(Observable o, Object arg)

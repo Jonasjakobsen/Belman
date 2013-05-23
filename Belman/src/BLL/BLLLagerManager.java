@@ -1,6 +1,7 @@
 package BLL;
 
 import BE.BELager;
+import BE.BEProduktion;
 import DAL.DALLagerDBManager;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.SQLException;
@@ -75,4 +76,9 @@ public class BLLLagerManager extends Observable{
 //    public ArrayList<BEProduktion> materialeLager(BELager p) throws SQLServerException, SQLException, Exception {
 //        return db.materialeLager(p);
 //    }
+
+    public ArrayList<BELager> getStockByOrderMaterial(BELager l) throws SQLServerException, SQLException
+    {
+        return db.getStockByOrderMaterial(l);
+    }
 }

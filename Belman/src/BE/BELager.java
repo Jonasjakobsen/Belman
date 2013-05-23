@@ -20,6 +20,7 @@ public class BELager {
     private Float Width;
     private Float Thickness;
     private Float StockQuantity; 
+    private BEProduktion produktion;
 
     
     
@@ -48,6 +49,14 @@ public class BELager {
         this.Code = Code;
         this.MaterialDensity = MaterialDensity;        
         this.StockQuantity = StockQuantity;
+    }
+    
+    public BELager(int id, String Code, Float MaterialDensity, Float StockQuantity, BEProduktion produktion) {
+        this.id = id;
+        this.Code = Code;
+        this.MaterialDensity = MaterialDensity;        
+        this.StockQuantity = StockQuantity;
+        this.produktion = produktion;
     }
     
     
@@ -120,6 +129,14 @@ public class BELager {
      */
     public Float getStockQuantity() {
         return StockQuantity;
+    }
+
+    /**
+     * @return the produktion
+     */
+    public BEProduktion getProduktion()
+    {
+        return produktion;
     }
 
 }
