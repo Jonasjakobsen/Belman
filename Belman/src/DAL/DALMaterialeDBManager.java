@@ -12,8 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- *
- * @author Christoffer
+ * @author Stoffer, Jonas & Christian
+ * Materiale DB Manager The data Access Layer
  */
 public class DALMaterialeDBManager extends DALBelmanDBManager { 
     

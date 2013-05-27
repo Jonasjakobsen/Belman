@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
+ * @author Stoffer, Jonas & Christian
  * Lager DB Manager The data Access Layer
  */
 public class DALMedarbejderDBManager extends DALBelmanDBManager {

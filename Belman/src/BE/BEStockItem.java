@@ -6,7 +6,7 @@ package BE;
 
 /**
  *
- * @author Christoffer
+ * @author Stoffer, Jonas & Christian
  */
 public class BEStockItem {
     private final int id;
@@ -17,6 +17,19 @@ public class BEStockItem {
     private int sleeveId;
     private BECoilType coilType;
     private BEMateriale material;
+    
+    /**
+     * Den overordnede konstruktør til CoilType.
+     *
+     * @param id
+     * @param chargeNo
+     * @param length
+     * @param stockQuantity
+     * @param coilTypeId
+     * @param sleeveId
+     * @param BECoilType coilType
+     * @param BEMateriale material
+     */
 
     public BEStockItem(int id, String chargeNo, Float length, Float stockQuantity, int coilTypeId, int sleeveId, BECoilType coilType, BEMateriale material)
     {

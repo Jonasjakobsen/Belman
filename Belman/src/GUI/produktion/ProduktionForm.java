@@ -8,16 +8,9 @@ import BE.BELager;
 import BE.BEProduktion;
 import BLL.BLLLagerManager;
 import BLL.BLLProduktionManager;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -25,16 +18,13 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
- * @author Christoffer
+ * @author Stoffer, Jonas & Christian
  */
 public class ProduktionForm extends javax.swing.JFrame implements Observer
 {
 
     private BLLProduktionManager promgr;
     private BLLLagerManager lagmgr;
-//    private BLLSleeveManager slmgr;
-//    private BLLStockItemManager stmgr;
-//    private BLLMaterialeManager mmgr;
     private ProduktionFormTableModel promodel;
     private SortOrdreTableModel sortmodel;
     private SortLagerTableModel sortlagermodel;
@@ -48,12 +38,12 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
      */
     public ProduktionForm() throws Exception
     {
-//        super(parent, modal);
+
         constructTables();
         centerTables();
         selectOrder();
         selectStockItem();
-//        addEnterKeyListeners();
+
     }
 
     public static ProduktionForm getInstance() throws Exception
@@ -72,8 +62,7 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         btngrpFilter = new javax.swing.ButtonGroup();
         lblIgangvaerendeProduktion = new javax.swing.JLabel();
@@ -107,21 +96,17 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
         jscrpVaelgOrdre.setViewportView(jtblSortOrdre);
 
         btnAfbyd.setText("Close program");
-        btnAfbyd.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnAfbyd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAfbydActionPerformed(evt);
             }
         });
 
         jtblLager.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
 
             },
-            new String []
-            {
+            new String [] {
 
             }
         ));
@@ -235,11 +220,6 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
         initComponents();
         setLocationRelativeTo(this);
 
-
-//        lagmgr = new BLLLagerManager();
-//        lagmodel = new GUI.produktion.LagerTableModel(lagmgr.visLager());
-//        jtblLager.setModel(lagmodel);
-
         lagmgr = BLLLagerManager.getInstance();
         lagmgr.addObserver(this);
         lagmodel = new LagerTableModel(lagmgr.visLager());
@@ -251,14 +231,7 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
         jtblVaelgOrdre.setModel(sortmodel);
         promodel = new ProduktionFormTableModel(promgr.visOrdrer());
         jtblVaelgOrdre.setModel(promodel);
-//        
-//        promgr = BLLProduktionManager.getInstance();
-//        promgr.addObserver(this);
 
-//        lagmgr = BLLLagerManager.getInstance();
-//        lagmgr.addObserver(this);
-//        lagmodel = new LagerTableModel(lagmgr.visLager());
-        
     }
 
     private void centerTables()
@@ -278,51 +251,6 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
         jtblLager.setDefaultRenderer(int.class, centerRenderer);
     }
 
-//    
-//    private void clearFields()
-//    {
-//        txtEmployeeNo.setText("");
-//        txtWidth.setText("");
-//        txtLength.setText("");
-//        txtQuantity.setText("");
-//    }
-//    
-//    private void fillProFields(BEProduktion p)
-//    {
-//        txtEmployeeNo.setText("" + p.getMaterialID());
-//        txtWidth.setText("" + p.getWidth());
-//        txtLength.setText("" + p.getCoilLength());
-//        txtQuantity.setText("" + p.getQuantity());
-//    }
-//    
-//    private void fillFields(BELager p)
-//    {
-//        txtEmployeeNo.setText("" + p.getMaterialID());
-//        txtWidth.setText("" + p.getWidth());
-//        txtLength.setText("" + p.getProduktion().getCoilLength());
-//        txtQuantity.setText("" + p.getProduktion().getQuantity());
-//    }
-//
-//    private void addEnterKeyListeners()
-//    {
-//        KeyListener enterListener = new KeyAdapter()
-//        {
-//            @Override
-//            public void keyPressed(KeyEvent ke)
-//            {
-//                if (ke.getKeyCode() == KeyEvent.VK_ENTER)
-//                {
-//                    btnOk.doClick();
-//                }
-//            }
-//        };
-//        txtEmployeeNo.addKeyListener(enterListener);
-//        txtLength.addKeyListener(enterListener);
-//        txtWidth.addKeyListener(enterListener);
-//        txtQuantity.addKeyListener(enterListener);
-//    }
-
-
     private void selectStockItem()
     {
         jtblLager.getSelectionModel().addListSelectionListener(new ListSelectionListener()
@@ -337,7 +265,7 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
                         return;
                     }
                     BELager p = lagmodel.getLagerByRow(selectedStockRow);
-//                    lagmodel.clear();
+
                     try
                     {
                         if (!lagmgr.getStockByOrderMaterial(p).isEmpty());
@@ -355,8 +283,7 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
                                         return;
                                     }
                                     BELager p = sortlagermodel.getOrderByRow(selectedRow);
-//                                    clearFields();
-//                                    fillFields(p);
+
                                 }
                             });
                         }
@@ -382,10 +309,9 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
                 {
                     return;
                 }
-    //                    jtblSortOrdre.getSelectionModel().clearSelection();
+   
                 BEProduktion p = promodel.getOrderByRow(selectedRow);
-    //                    clearFields();
-    //                    fillProFields(p);
+
                 try
                 {
                     if (!promgr.getOrderByOrderMaterial(p).isEmpty());
@@ -403,8 +329,6 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
                                     return;
                                 }
                                 BEProduktion p = sortmodel.getOrderByRow(selectedRow);
-//                                clearFields();
-//                                fillProFields(p);
 
                             }
                         });

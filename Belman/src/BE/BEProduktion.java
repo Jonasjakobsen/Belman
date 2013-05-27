@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  *
- * @author Christoffer
+ * @author Stoffer, Jonas & Christian
  */
 public class BEProduktion {
     

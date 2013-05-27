@@ -11,7 +11,7 @@ import java.util.Observable;
 
 /**
  *
- * @author Christoffer
+ * @author Stoffer, Jonas & Christian
  */
 public class BLLSleeveManager extends Observable {
 

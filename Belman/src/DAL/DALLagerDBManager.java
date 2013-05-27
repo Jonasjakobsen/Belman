@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
+ * @author Stoffer, Jonas & Christian
  * Lager DB Manager The data Access Layer
  */
 public class DALLagerDBManager extends DALBelmanDBManager {
@@ -66,17 +67,10 @@ public class DALLagerDBManager extends DALBelmanDBManager {
             ArrayList<BELager> lageret = new ArrayList<>();
 
             while (rs.next()) {
-//                int id = rs.getInt(STOCKITEMID);
-//                String Code = rs.getString(COILCODE);
-//                int MaterialID = rs.getInt(MATERIALID);
+
                 String Code = rs.getString(COILCODE);
                 Float MaterialDensity = rs.getFloat(MATERIALDENSITY);
-//                String ChargeNo = rs.getString(CHARGENO);
-//                Float Length = rs.getFloat(LENGTH);
-//                Float Width = rs.getFloat(WIDTH);
-//                Float Thickness = rs.getFloat(THICKNESS);
                 Float StockQuantity = rs.getFloat(STOCKQUANTITY);
-
 
                 BELager l = new BELager(-1, Code, MaterialDensity, StockQuantity);
                 lageret.add(l);

@@ -9,8 +9,8 @@ import java.io.FileReader;
 import java.util.Properties;
 
 /**
- *
- * @author Jonas
+ * @author Stoffer, Jonas & Christian
+ * 
  */
 public abstract class DALBelmanDBManager
 {

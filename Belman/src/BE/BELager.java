@@ -6,7 +6,7 @@ package BE;
 
 /**
  *
- * @author Groggy
+ * @author Stoffer, Jonas & Christian
  */
 public class BELager {
 
@@ -28,6 +28,21 @@ public class BELager {
         this(-1, Code, MaterialID, MaterialName, MaterialDensity, ChargeNo, Length, Width, Thickness, StockQuantity);
     }
 
+    /**
+     * The main constructor to Lager.
+     *
+     * @param id
+     * @param code
+     * @param MaterialID
+     * @param MaterialName
+     * @param MaterialDensity
+     * @param ChargeNo
+     * @param Length
+     * @param Width
+     * @param Thickness
+     * @param StockQuantity
+     */
+    
     public BELager(int id, String Code, int MaterialID, String MaterialName, Float MaterialDensity, String ChargeNo, Float Length, Float Width, Float Thickness, Float StockQuantity) {
         this.id = id;
         this.Code = Code;

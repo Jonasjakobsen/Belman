@@ -33,50 +33,74 @@ public class BLLLagerManager extends Observable{
     }
 
     /**
-     * Retrieves the visLager method from the Data access layer
-     *
-     * @returns showAll
+     * Retrieves the visLager method from the Data access layer     *
+     * @returns visLager
      * @throws SQLException, SQLServerException
      */
     public ArrayList<BELager> visLager() throws SQLServerException, SQLException {
         return db.visLager();
     }
-
+    /**
+     * Retrieves the orderByThickness method from the Data access layer     *
+     * @returns orderByThickness
+     * @throws SQLException, SQLServerException
+     */
     public ArrayList<BELager> orderByThickness() throws SQLServerException, SQLException {
         return db.orderByThickness();
     }
-
+    /**
+     * Retrieves the orderByLength method from the Data access layer     *
+     * @returns orderByLength
+     * @throws SQLException, SQLServerException
+     */
     public ArrayList<BELager> orderByLength() throws SQLServerException, SQLException {
         return db.orderByLength();
     }
-
+    /**
+     * Retrieves the orderByWidth method from the Data access layer     *
+     * @returns orderByWidth
+     * @throws SQLException, SQLServerException
+     */
     public ArrayList<BELager> orderByWidth() throws SQLServerException, SQLException {
         return db.orderByWidth();
     }
-
+    /**
+     * Retrieves the orderByMaterialID method from the Data access layer     *
+     * @returns orderByMaterialID
+     * @throws SQLException, SQLServerException
+     */
     public ArrayList<BELager> orderByMaterialID() throws SQLServerException, SQLException {
         return db.orderByMaterialID();
     }
-
+    /**
+     * Retrieves the orderByDensity method from the Data access layer     *
+     * @returns orderByDensity
+     * @throws SQLException, SQLServerException
+     */
     public ArrayList<BELager> orderByDensity() throws SQLServerException, SQLException {
         return db.orderByDensity();
     }
-
+    /**
+     * Retrieves the orderByStockQuantity method from the Data access layer     *
+     * @returns orderByStockQuantity
+     * @throws SQLException, SQLServerException
+     */
     public ArrayList<BELager> orderByStockQuantity() throws SQLServerException, SQLException {
         return db.orderByStockQuantity();
     }
-
+    /**
+     * Retrieves the getLagerById method from the Data access layer     *
+     * @returns getLagerById
+     * @throws SQLException, SQLServerException
+     */
     public ArrayList<BELager> getLagerById(int id) throws SQLServerException, SQLException {
         return db.getLagerById(id);
     }
-
-//    public ArrayList<BEProduktion> getMaterialByOrder(BEProduktion p)  throws SQLServerException, SQLException {
-//        return db.getMaterialByOrder(p);
-//    }
-//    public ArrayList<BEProduktion> materialeLager(BELager p) throws SQLServerException, SQLException, Exception {
-//        return db.materialeLager(p);
-//    }
-
+    /**
+     * Retrieves the getStockByOrderMaterial method from the Data access layer     *
+     * @returns getStockByOrderMaterial
+     * @throws SQLException, SQLServerException
+     */
     public ArrayList<BELager> getStockByOrderMaterial(BELager l) throws SQLServerException, SQLException
     {
         return db.getStockByOrderMaterial(l);

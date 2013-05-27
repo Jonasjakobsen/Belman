@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Stoffer
+ * @author Stoffer, Jonas & Christian
  */
 public class LagerTableModel extends AbstractTableModel
 {
@@ -100,13 +100,7 @@ public class LagerTableModel extends AbstractTableModel
          lager.clear();
     }
     
-//    public void clearListSelection()
-//    {
-//        clearSelection();
-//    }
-    
 
-    
     public void setCollection(Collection<BELager> list)
     {
         lager = new ArrayList<>(list);

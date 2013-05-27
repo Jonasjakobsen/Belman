@@ -4,22 +4,28 @@
  */
 package BE;
 
-import java.util.GregorianCalendar;
-
 /**
  *
- * @author Christoffer
+ * @author Stoffer, Jonas & Christian
  */
 public class BESleeve {
     private final int id;
-//    private GregorianCalendar startTime;
-//    private GregorianCalendar endTime;
     private Float thickness;
     private Float circumference;
     private int materialId;
     private int pOrderId;
     private BEMateriale material;    
     
+    /**
+     * Den overordnede konstruktør til Sleeve.
+     *
+     * @param id
+     * @param thickness
+     * @param circumference
+     * @param materialId
+     * @param pOrderId
+     * @param BEMateriale material
+     */
 
     public BESleeve(int id,  Float thickness, Float circumference, int materialId, int pOrderId, BEMateriale material)
     {
@@ -38,38 +44,6 @@ public class BESleeve {
     {
         return id;
     }
-
-//    /**
-//     * @return the startTime
-//     */
-//    public GregorianCalendar getStartTime()
-//    {
-//        return startTime;
-//    }
-//
-//    /**
-//     * @param startTime the startTime to set
-//     */
-//    public void setStartTime(GregorianCalendar startTime)
-//    {
-//        this.startTime = startTime;
-//    }
-//
-//    /**
-//     * @return the endTime
-//     */
-//    public GregorianCalendar getEndTime()
-//    {
-//        return endTime;
-//    }
-//
-//    /**
-//     * @param endTime the endTime to set
-//     */
-//    public void setEndTime(GregorianCalendar endTime)
-//    {
-//        this.endTime = endTime;
-//    }
 
     /**
      * @return the thickness

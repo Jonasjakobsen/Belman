@@ -1,6 +1,5 @@
 package DAL;
 
-import BE.BELager;
 import BE.BEProduktion;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
+ * @author Stoffer, Jonas & Christian
  * Lager DB Manager The data Access Layer
  */
 public class DALProduktionDBManager extends DALBelmanDBManager {

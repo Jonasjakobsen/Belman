@@ -6,7 +6,7 @@ package BE;
 
 /**
  *
- * @author Christoffer
+ * @author Stoffer, Jonas & Christian
  */
 public class BEMateriale {
     private int id;
@@ -14,7 +14,7 @@ public class BEMateriale {
     private String name;
 
     /**
-     * Den overordnede konstruktør til Material
+     * The main constructor to Materiale.
      *
      * @param id
      * @param density

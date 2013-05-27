@@ -6,7 +6,7 @@ package BE;
 
 /**
  *
- * @author Christoffer
+ * @author Stoffer, Jonas & Christian
  */
 public class BECoilType {
      private final int id;
@@ -16,7 +16,7 @@ public class BECoilType {
     private int materialId;
 
     /**
-     * Den overordnede konstruktør til CoilType.
+     * The main constructor to CoilType.
      *
      * @param id
      * @param code

@@ -11,7 +11,7 @@ import javax.swing.UIManager;
 
 /**
  *
- * @author Stoffer
+ * @author Stoffer, Jonas & Christian
  */
 public class BelmanApp extends javax.swing.JFrame
 {

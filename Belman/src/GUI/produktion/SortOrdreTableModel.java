@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Stoffer
+ * @author Stoffer, Jonas & Christian
  */
 public class SortOrdreTableModel extends AbstractTableModel {
 

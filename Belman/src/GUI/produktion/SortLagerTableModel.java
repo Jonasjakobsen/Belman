@@ -5,7 +5,6 @@
 package GUI.produktion;
 
 import BE.BELager;
-import BE.BEProduktion;
 import BLL.BLLLagerManager;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Stoffer
+ * @author Stoffer, Jonas & Christian
  */
 public class SortLagerTableModel extends AbstractTableModel {
 
@@ -96,24 +95,5 @@ public class SortLagerTableModel extends AbstractTableModel {
     void clear() {
         lager.clear();
     }
-    
-//    
-//    @Override
-//    public void setValueAt(Object o, int row, int col)
-//    {
-//            BELager p = lager.get(row);
-//            switch (col) {
-//
-//
-//                case 0: p.getPOrder(); break;
-//                case 1: p.getDueDate(); break;
-//                case 2: p.getQuantity(); break;
-//                case 3: p.getMaterialName(); break;
-//            }
-//        }
-//
-//    BELager getOrderByMaterial(int selectedRow2) {
-//        return lager.get(selectedRow2);
-//    }
-    
+ 
 }

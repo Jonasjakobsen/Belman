@@ -11,12 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 /**
- *
- * @author Christoffer
+ * @author Stoffer, Jonas & Christian
+ * Sleeve DB Manager The data Access Layer
  */
 public class DALSleeveDBManager extends DALBelmanDBManager  {
     
