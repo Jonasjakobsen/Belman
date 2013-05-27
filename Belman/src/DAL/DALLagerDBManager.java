@@ -392,7 +392,8 @@ public class DALLagerDBManager extends DALBelmanDBManager {
                         +"AND CoilType.materialId = Material.id "
                         +"AND Material.id = Sleeve.materialId "
                         +"AND Sleeve.pOrderId = ProductionOrder.pOrderId "
-                        +"AND CoilType.thickness = Sleeve.thickness ";
+                        +"AND CoilType.thickness = Sleeve.thickness "
+                        + "ORDER BY urgent DESC, duedate ASC";
             
             
 

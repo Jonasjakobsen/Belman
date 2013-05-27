@@ -53,7 +53,7 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
         centerTables();
         selectOrder();
         selectStockItem();
-        addEnterKeyListeners();
+//        addEnterKeyListeners();
     }
 
     public static ProduktionForm getInstance() throws Exception
@@ -83,30 +83,17 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
         jscrpVaelgOrdre = new javax.swing.JScrollPane();
         jtblSortOrdre = new javax.swing.JTable();
         btnAfbyd = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        txtEmployeeNo = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
-        txtLength = new javax.swing.JTextField();
-        txtWidth = new javax.swing.JTextField();
-        txtQuantity = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblLager = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        btnOk = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Belman Produktion");
         setFocusTraversalPolicyProvider(true);
-        setMaximumSize(new java.awt.Dimension(1200, 800));
-        setMinimumSize(new java.awt.Dimension(1200, 800));
+        setMaximumSize(new java.awt.Dimension(950, 800));
+        setMinimumSize(new java.awt.Dimension(950, 800));
         setName("Belman produktion"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1200, 800));
+        setPreferredSize(new java.awt.Dimension(950, 800));
 
         lblIgangvaerendeProduktion.setText("Choose an order to produce");
 
@@ -128,8 +115,6 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
             }
         });
 
-        jLabel1.setText("Order job in");
-
         jtblLager.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
@@ -145,27 +130,6 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
 
         jLabel2.setText("Stock");
 
-        btnOk.setText("Ok");
-        btnOk.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                btnOkActionPerformed(evt);
-            }
-        });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pending", "In Production", "Finished" }));
-
-        jLabel3.setText("EmployeeNo:");
-
-        jLabel4.setText("Length:");
-
-        jLabel5.setText("Width:");
-
-        jLabel6.setText("Quantity:");
-
-        jLabel7.setText("Status:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,32 +144,13 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 48, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel1))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnOk, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtEmployeeNo)
-                                .addComponent(jSeparator1)
-                                .addComponent(txtLength)
-                                .addComponent(txtWidth)
-                                .addComponent(txtQuantity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)))
+                    .addComponent(jscrpVaelgOrdre)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(lblVaelgOrdre)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jscrpVaelgOrdre, javax.swing.GroupLayout.PREFERRED_SIZE, 899, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnAfbyd)))
                 .addContainerGap())
         );
@@ -215,52 +160,20 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtEmployeeNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtLength, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtWidth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnOk))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(jLabel5)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAfbyd))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblIgangvaerendeProduktion)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jscrpProdOrdre, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1)))
-                        .addGap(18, 18, 18)
-                        .addComponent(lblVaelgOrdre)
+                        .addComponent(lblIgangvaerendeProduktion)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jscrpVaelgOrdre, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jscrpProdOrdre, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1)))
+                .addGap(18, 18, 18)
+                .addComponent(lblVaelgOrdre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscrpVaelgOrdre, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAfbyd)
+                .addGap(6, 6, 6))
         );
 
         pack();
@@ -269,10 +182,6 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
     private void btnAfbydActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfbydActionPerformed
         dispose();
     }//GEN-LAST:event_btnAfbydActionPerformed
-
-    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        System.out.println("LOLOLOL");
-    }//GEN-LAST:event_btnOkActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -309,18 +218,9 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
 //    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAfbyd;
-    private javax.swing.JButton btnOk;
     private javax.swing.ButtonGroup btngrpFilter;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JScrollPane jscrpProdOrdre;
     private javax.swing.JScrollPane jscrpVaelgOrdre;
     private javax.swing.JTable jtblLager;
@@ -328,10 +228,6 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
     private javax.swing.JTable jtblVaelgOrdre;
     private javax.swing.JLabel lblIgangvaerendeProduktion;
     private javax.swing.JLabel lblVaelgOrdre;
-    private javax.swing.JTextField txtEmployeeNo;
-    private javax.swing.JTextField txtLength;
-    private javax.swing.JTextField txtQuantity;
-    private javax.swing.JTextField txtWidth;
     // End of variables declaration//GEN-END:variables
 
     private void constructTables() throws Exception
@@ -382,49 +278,49 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
         jtblLager.setDefaultRenderer(int.class, centerRenderer);
     }
 
-    
-    private void clearFields()
-    {
-        txtEmployeeNo.setText("");
-        txtWidth.setText("");
-        txtLength.setText("");
-        txtQuantity.setText("");
-    }
-    
-    private void fillProFields(BEProduktion p)
-    {
-        txtEmployeeNo.setText("" + p.getMaterialID());
-        txtWidth.setText("" + p.getWidth());
-        txtLength.setText("" + p.getCoilLength());
-        txtQuantity.setText("" + p.getQuantity());
-    }
-    
-    private void fillFields(BELager p)
-    {
-        txtEmployeeNo.setText("" + p.getMaterialID());
-        txtWidth.setText("" + p.getWidth());
-        txtLength.setText("" + p.getProduktion().getCoilLength());
-        txtQuantity.setText("" + p.getProduktion().getQuantity());
-    }
-
-    private void addEnterKeyListeners()
-    {
-        KeyListener enterListener = new KeyAdapter()
-        {
-            @Override
-            public void keyPressed(KeyEvent ke)
-            {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER)
-                {
-                    btnOk.doClick();
-                }
-            }
-        };
-        txtEmployeeNo.addKeyListener(enterListener);
-        txtLength.addKeyListener(enterListener);
-        txtWidth.addKeyListener(enterListener);
-        txtQuantity.addKeyListener(enterListener);
-    }
+//    
+//    private void clearFields()
+//    {
+//        txtEmployeeNo.setText("");
+//        txtWidth.setText("");
+//        txtLength.setText("");
+//        txtQuantity.setText("");
+//    }
+//    
+//    private void fillProFields(BEProduktion p)
+//    {
+//        txtEmployeeNo.setText("" + p.getMaterialID());
+//        txtWidth.setText("" + p.getWidth());
+//        txtLength.setText("" + p.getCoilLength());
+//        txtQuantity.setText("" + p.getQuantity());
+//    }
+//    
+//    private void fillFields(BELager p)
+//    {
+//        txtEmployeeNo.setText("" + p.getMaterialID());
+//        txtWidth.setText("" + p.getWidth());
+//        txtLength.setText("" + p.getProduktion().getCoilLength());
+//        txtQuantity.setText("" + p.getProduktion().getQuantity());
+//    }
+//
+//    private void addEnterKeyListeners()
+//    {
+//        KeyListener enterListener = new KeyAdapter()
+//        {
+//            @Override
+//            public void keyPressed(KeyEvent ke)
+//            {
+//                if (ke.getKeyCode() == KeyEvent.VK_ENTER)
+//                {
+//                    btnOk.doClick();
+//                }
+//            }
+//        };
+//        txtEmployeeNo.addKeyListener(enterListener);
+//        txtLength.addKeyListener(enterListener);
+//        txtWidth.addKeyListener(enterListener);
+//        txtQuantity.addKeyListener(enterListener);
+//    }
 
 
     private void selectStockItem()
@@ -507,8 +403,8 @@ public class ProduktionForm extends javax.swing.JFrame implements Observer
                                     return;
                                 }
                                 BEProduktion p = sortmodel.getOrderByRow(selectedRow);
-                                clearFields();
-                                fillProFields(p);
+//                                clearFields();
+//                                fillProFields(p);
 
                             }
                         });

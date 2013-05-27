@@ -234,7 +234,7 @@ public class DALProduktionDBManager extends DALBelmanDBManager {
                     + "AND CoilType.id = StockItem.coilTypeId "
                     + "AND CoilType.thickness = Sleeve.thickness "
                     + "AND ProductionOrder.pOrder = ? "
-                    + "ORDER By duedate ASC, urgent DESC";
+                    + "ORDER BY urgent DESC, duedate ASC";
 
             PreparedStatement ps = con.prepareStatement(sql);
 
