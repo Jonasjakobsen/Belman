@@ -153,5 +153,12 @@ public class BELager {
     {
         return produktion;
     }
+    
+    @Override
+    public String toString()
+    {
+//        BELager la = new BELager(-1, Code, MaterialDensity, StockQuantity, new BEProduktion(sOrderID, pOrder, dueDate, quantity, materialName, status, urgent, employeeID, coilLength, coilWidth, coilCode));
+        return String.format("%-10s %-10s", Code, produktion);
+    }
 
 }

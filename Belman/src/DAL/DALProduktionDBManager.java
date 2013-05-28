@@ -66,8 +66,8 @@ public class DALProduktionDBManager extends DALBelmanDBManager {
             +"AND Sleeve.materialId = Material.id  "
             +"AND Material.id = CoilType.materialId "
             +"AND CoilType.id = StockItem.coilTypeId "
-            +"AND CoilType.thickness = Sleeve.thickness "
-            +"ORDER BY urgent DESC, duedate ASC";
+            +"AND CoilType.thickness = Sleeve.thickness ";
+//            +"ORDER BY urgent DESC, duedate ASC";
               
             PreparedStatement ps = con.prepareStatement(sql);
 

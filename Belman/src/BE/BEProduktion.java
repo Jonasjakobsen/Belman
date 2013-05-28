@@ -306,6 +306,11 @@ public class BEProduktion {
     }
 
 
-
+    @Override
+    public String toString()
+    {
+//        new BEProduktion(sOrderID, pOrder, dueDate, quantity, materialName, status, urgent, employeeID, coilLength, coilWidth, coilCode));
+        return String.format("%-25s %-15s %-15s %-10s %-5s\n", POrder, DueDate, Quantity, status, Urgent );
+    }
     
 }
