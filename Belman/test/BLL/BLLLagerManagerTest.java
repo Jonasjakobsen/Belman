@@ -19,7 +19,6 @@ import org.junit.Test;
 public class BLLLagerManagerTest
 {
     static BLLLagerManager lagmgr;
-//    private static BLLLagerManager instance = null;
     
     public BLLLagerManagerTest()
     {
@@ -29,8 +28,6 @@ public class BLLLagerManagerTest
     public static void setUpClass() throws Exception
     {
         System.out.println("-------Starting jUnittest-------");
-        System.out.println("Setting up a LagerDBManager");
-        System.out.println("");
         lagmgr = BLLLagerManager.getInstance();
     }
 
@@ -46,6 +43,8 @@ public class BLLLagerManagerTest
 
     /**
      * Test of getInstance method, of class BLLLagerManager.
+     * Testing if the getInstance(); method works in the BLLLagerManager.
+     * Will show this by returning all the stockitems in our database.
      */
     @Test
     public void testGetInstance() throws Exception
@@ -72,13 +71,17 @@ public class BLLLagerManagerTest
     
     /**
      * Test of getStockByOrderMaterial method, of class BLLLagerManager.
+     * This method will create a new BELager object, and send this Object
+     * to the DAL layer. Then it will return the production orders containing
+     * the material coiltype in the BELager object in an ArrayList
+     * which we will print out in a string.
      */
     @Test
     public void testGetStockByOrderMaterial() throws Exception
     {
         System.out.println("Testing the method 'GetStockByOrderMaterial'");
         System.out.println("This method will return the orders, matching the"
-                + "material from the item chosen in the stock list.");
+                         + "material from the item chosen in the stock list.");
         
         System.out.println("\nCreating a stock item, to sort by.");
         
