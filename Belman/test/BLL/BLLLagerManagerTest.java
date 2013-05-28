@@ -103,16 +103,19 @@ public class BLLLagerManagerTest
                            " | StockQuantity :" + l.getStockQuantity());
         
         System.out.println("\nShowing the orders matching the material "
-                + "in the selected stockitem.");
+                         + "in the selected stockitem.");
         ArrayList<BELager> stockByOrderMaterial = lagmgr.getStockByOrderMaterial(l);
         
-        System.out.println("Number of Orders matching the material in the selected stockitem selected : "
-                + lagmgr.getStockByOrderMaterial(l).size());
+        System.out.println("Number of Orders matching the material in the "
+                          + "selected stockitem selected : "
+                          + lagmgr.getStockByOrderMaterial(l).size());
         
-        System.out.println("\nPrinting out the arraylist, showing the orders matching material in the selected stockitem");
+        System.out.println("\nPrinting out the arraylist, showing the orders "
+                         + " matching material in the selected stockitem");
         System.out.println("Coil Code    Production Order         Due Date    "
                 + "    Quantity        Status     Urgent");
         System.out.println(stockByOrderMaterial.toString());
+        
         System.out.println("");
         System.out.println("");
     }
