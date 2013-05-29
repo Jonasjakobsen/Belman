@@ -6,7 +6,7 @@ package BE;
 
 /**
  *
- * @author Stoffer, Jonas & Christian
+ * @author Christoffer, Jonas & Christian
  */
 public class BELager {
 
@@ -24,23 +24,38 @@ public class BELager {
 
     
     
-    public BELager(String Code, int MaterialID, String MaterialName, Float MaterialDensity, String ChargeNo, Float Length, Float Width, Float Thickness, Float StockQuantity) {
-        this(-1, Code, MaterialID, MaterialName, MaterialDensity, ChargeNo, Length, Width, Thickness, StockQuantity);
+    /**
+     * The constructor for the BELager class.
+     * @param Code - The coilCode in the BELager.
+     * @param MaterialID - The material ID, identifying the material.
+     * @param MaterialName - The material name.
+     * @param MaterialDensity - The density of the material.
+     * @param ChargeNo - The chargeNo of the coil.
+     * @param Length - The length of the material in stock.
+     * @param Width - The width of the material in stock.
+     * @param Thickness - The thickness of the material in stock.
+     * @param StockQuantity - The stockquantity of the material in stock.
+     */
+    public BELager(String Code, int MaterialID, String MaterialName, 
+            Float MaterialDensity, String ChargeNo, Float Length, 
+            Float Width, Float Thickness, Float StockQuantity) 
+    {
+        this(-1, Code, MaterialID, MaterialName, MaterialDensity, 
+                ChargeNo, Length, Width, Thickness, StockQuantity);
     }
 
     /**
-     * The main constructor to Lager.
-     *
-     * @param id
-     * @param code
-     * @param MaterialID
-     * @param MaterialName
-     * @param MaterialDensity
-     * @param ChargeNo
-     * @param Length
-     * @param Width
-     * @param Thickness
-     * @param StockQuantity
+     * The constructor for the BELager class.
+     * @param id - The ID for the BELager constructor.
+     * @param Code - The coilCode in the BELager.
+     * @param MaterialID - The material ID, identifying the material.
+     * @param MaterialName - The material name.
+     * @param MaterialDensity - The density of the material.
+     * @param ChargeNo - The chargeNo of the coil.
+     * @param Length - The length of the material in stock.
+     * @param Width - The width of the material in stock.
+     * @param Thickness - The thickness of the material in stock.
+     * @param StockQuantity - The amount in stock on the coil.
      */
     
     public BELager(int id, String Code, int MaterialID, String MaterialName, Float MaterialDensity, String ChargeNo, Float Length, Float Width, Float Thickness, Float StockQuantity) {
@@ -58,6 +73,13 @@ public class BELager {
     }
     
     
+    /**
+     * The constructor for the BELager class.
+     * @param id - the ID of the BELager.
+     * @param Code - The coilcode of the coil in stock.
+     * @param MaterialDensity - The material density for the coil in stock.
+     * @param StockQuantity - The amount in stock on the coil.
+     */
     public BELager(int id, String Code, Float MaterialDensity, Float StockQuantity) {
         
         this.id = id;
@@ -66,6 +88,14 @@ public class BELager {
         this.StockQuantity = StockQuantity;
     }
     
+    /**
+     * The constructor for the BELager class.
+     * @param id - the ID of the BELager.
+     * @param Code - The coilcode of the coil in stock.
+     * @param MaterialDensity - The material density for the coil in stock.
+     * @param StockQuantity - The amount in stock on the coil.
+     * @param produktion - Getting the constructor from the BEProduktion class.
+     */
     public BELager(int id, String Code, Float MaterialDensity, Float StockQuantity, BEProduktion produktion) {
         this.id = id;
         this.Code = Code;
@@ -157,7 +187,6 @@ public class BELager {
     @Override
     public String toString()
     {
-//        BELager la = new BELager(-1, Code, MaterialDensity, StockQuantity, new BEProduktion(sOrderID, pOrder, dueDate, quantity, materialName, status, urgent, employeeID, coilLength, coilWidth, coilCode));
         return String.format("%-10s %-10s", Code, produktion);
     }
 

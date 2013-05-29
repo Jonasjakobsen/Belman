@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  *
- * @author Stoffer, Jonas & Christian
+ * @author Christoffer, Jonas & Christian
  */
 public class BEProduktion {
     
@@ -65,46 +65,11 @@ public class BEProduktion {
         this.Circumference = Circumference;
         this.coilCode = coilCode;
     }
-    
-        public BEProduktion(int sOrderId, int pOrderId, String pOrder, Date dueDate, Float quantity, Float width, Float thickness, String status, boolean urgent, String coilCode) {
-        this.SOrderID = sOrderId;       
-        this.POrderID = pOrderId;
-        this.POrder = pOrder;
-        this.DueDate = dueDate;
-        this.Quantity = quantity;
-        this.Width = width;
-        this.Thickness = thickness;
-        this.status = status;
-        this.Urgent = urgent;
-        this.coilCode = coilCode;
-        }
 
-    
-    /**
-     * The constructor for the BEProduction class
-     * @param sOrderId  - The salesorder ID to identify a specific sales order
-     * @param pOrderId - The production ID to identify a specific production order
-     * @param pOrder - The productionorder number.
-     * @param dueDate  - The duedate for an order to be finished.
-     * @param quantity  - The quantity of finished products needed to be produced.
-     * @param width - The width of the material.
-     * @param thickness  - The thickness of the material.
-     * @param status - The status of the order in production
-     * @param urgent  - Boolean to mark an order as urgent.
-     */
-    public BEProduktion(int sOrderId, String pOrder, Date dueDate, Float quantity, Float width, Float thickness, String status, boolean urgent, String coilCode) {
-        this.SOrderID = sOrderId;       
-        this.POrder = pOrder;
-        this.DueDate = dueDate;
-        this.Quantity = quantity;
-        this.Width = width;
-        this.Thickness = thickness;
-        this.status = status;
-        this.Urgent = urgent;
-        this.coilCode = coilCode;
-    }
-    
-    public BEProduktion(int SOrderID, String pOrder, Date DueDate, Float quantity, String materialName, String status, Boolean urgent, int employeeNo, Float coilLength, Float coilWidth, String coilCode)
+    public BEProduktion(int SOrderID, String pOrder, Date DueDate, 
+            Float quantity, String materialName, String status, 
+            Boolean urgent, int employeeNo, Float coilLength, 
+            Float coilWidth, String coilCode)
     {
         this.SOrderID = SOrderID;
         this.POrder = pOrder;
@@ -118,33 +83,6 @@ public class BEProduktion {
         this.Width = coilWidth;
         this.coilCode = coilCode;
     }
-    
-    /**
-     * The constructor for the BEProduction class
-     * used in sorting on material specific production orders.
-     * @param SOrderID   - The salesorder ID to identify a specific sales order
-     * @param pOrder- The productionorder number.
-     * @param DueDate   - The duedate for an order to be finished.
-     * @param quantity - The quantity of finished products needed to be produced.
-     * @param materialName - the name of the material used in the production order.
-     */
-    public BEProduktion(int SOrderID, String pOrder, Date DueDate, Float quantity, String materialName, String status, Boolean urgent, int employeeNo, String coilCode, BELager lager)
-    {
-        this.SOrderID = SOrderID;
-        this.POrder = pOrder;
-        this.DueDate = DueDate;
-        this.Quantity = quantity;
-        this.materialName = materialName;
-        this.status = status;
-        this.Urgent = urgent;
-        this.employeeNo = employeeNo;
-//        this.coilLength = coilLength;
-//        this.Width = coilWidth;
-        this.coilCode = coilCode;
-        this.lager = lager;
-    }   
-    
-
     
 
     /**
@@ -309,8 +247,8 @@ public class BEProduktion {
     @Override
     public String toString()
     {
-//        new BEProduktion(sOrderID, pOrder, dueDate, quantity, materialName, status, urgent, employeeID, coilLength, coilWidth, coilCode));
-        return String.format("%-25s %-15s %-15s %-10s %-5s\n", POrder, DueDate, Quantity, status, Urgent );
+        return String.format("%-25s %-15s %-15s %-10s %-5s\n", POrder, 
+                             DueDate, Quantity, status, Urgent );
     }
     
 }

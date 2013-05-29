@@ -14,7 +14,7 @@ import org.junit.Test;
 
 /**
  *
- * @author Stoffer
+ * @author Christoffer, Jonas & Christian
  */
 public class BLLLagerManagerTest
 {

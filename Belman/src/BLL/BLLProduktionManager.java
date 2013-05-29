@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 /**
- * LagerManager The Business logic layer
+ *
+ * @author Christoffer, Jonas & Christian
  */
 public class BLLProduktionManager extends Observable {
 
@@ -38,38 +39,38 @@ public class BLLProduktionManager extends Observable {
     public ArrayList<BEProduktion> visOrdrer() throws SQLServerException, SQLException {
         return db.visOrdrer();
     }
-    /**
-     * Retrieves the orderByUrgent method from the Data access layer     *
-     * @returns orderByUrgent
-     * @throws SQLException, SQLServerException
-     */
-    public ArrayList<BEProduktion> orderByUrgent() throws SQLServerException, SQLException {
-        return db.orderByUrgent();
-    }
-    /**
-     * Retrieves the visOrdrer method from the Data access layer     *
-     * @returns visOrdrer
-     * @throws SQLException, SQLServerException
-     */
-    public ArrayList<BEProduktion> orderByMaterial() throws SQLServerException, SQLException {
-        return db.orderByMaterial();
-    }
-    /**
-     * Retrieves the visOrdrer method from the Data access layer     *
-     * @returns visOrdrer
-     * @throws SQLException, SQLServerException
-     */
-    public ArrayList<BEProduktion> orderByDueDate() throws SQLServerException, SQLException {
-        return db.orderByDueDate();
-    }
-    /**
-     * Retrieves the visOrdrer method from the Data access layer     *
-     * @returns visOrdrer
-     * @throws SQLException, SQLServerException
-     */
-    public ArrayList<BEProduktion> sortOrdrer() throws SQLServerException, SQLException {
-        return db.orderByMaterial();
-    }
+//    /**
+//     * Retrieves the orderByUrgent method from the Data access layer     *
+//     * @returns orderByUrgent
+//     * @throws SQLException, SQLServerException
+//     */
+//    public ArrayList<BEProduktion> orderByUrgent() throws SQLServerException, SQLException {
+//        return db.orderByUrgent();
+//    }
+//    /**
+//     * Retrieves the visOrdrer method from the Data access layer     *
+//     * @returns visOrdrer
+//     * @throws SQLException, SQLServerException
+//     */
+//    public ArrayList<BEProduktion> orderByMaterial() throws SQLServerException, SQLException {
+//        return db.orderByMaterial();
+//    }
+//    /**
+//     * Retrieves the visOrdrer method from the Data access layer     *
+//     * @returns visOrdrer
+//     * @throws SQLException, SQLServerException
+//     */
+//    public ArrayList<BEProduktion> orderByDueDate() throws SQLServerException, SQLException {
+//        return db.orderByDueDate();
+//    }
+//    /**
+//     * Retrieves the visOrdrer method from the Data access layer     *
+//     * @returns visOrdrer
+//     * @throws SQLException, SQLServerException
+//     */
+//    public ArrayList<BEProduktion> sortOrdrer() throws SQLServerException, SQLException {
+//        return db.orderByMaterial();
+//    }
     /**
      * Retrieves the visOrdrer method from the Data access layer     *
      * @returns visOrdrer
@@ -78,13 +79,13 @@ public class BLLProduktionManager extends Observable {
     public ArrayList<BEProduktion> getOrderByOrderMaterial(BEProduktion p) throws SQLServerException, SQLException {
         return db.getOrderByOrderMaterial(p);
     }
-    /**
-     * Retrieves the visOrdrer method from the Data access layer     *
-     * @returns visOrdrer
-     * @throws SQLException, SQLServerException
-     */
-    public ArrayList<BEProduktion> getOrderByMaterial(BEProduktion p) throws SQLServerException, SQLException
-    {
-        return db.getOrderByMaterial(p);
-    }
+//    /**
+//     * Retrieves the visOrdrer method from the Data access layer     *
+//     * @returns visOrdrer
+//     * @throws SQLException, SQLServerException
+//     */
+//    public ArrayList<BEProduktion> getOrderByMaterial(BEProduktion p) throws SQLServerException, SQLException
+//    {
+//        return db.getOrderByMaterial(p);
+//    }
 }

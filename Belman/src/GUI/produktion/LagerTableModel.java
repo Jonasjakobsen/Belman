@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Stoffer, Jonas & Christian
+ * @author Christoffer, Jonas & Christian
  */
 public class LagerTableModel extends AbstractTableModel
 {

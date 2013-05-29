@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
- * @author Stoffer, Jonas & Christian
+ * @author Christoffer, Jonas & Christian
  */
 public class ProduktionForm extends javax.swing.JFrame implements Observer
 {
