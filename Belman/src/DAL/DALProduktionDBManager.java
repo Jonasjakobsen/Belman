@@ -54,12 +54,11 @@ public class DALProduktionDBManager extends DALBelmanDBManager {
 
             while (rs.next()) 
             {
-                ordre.add(getOneOrder(rs));
+                ordre.add(getOneProductionOrder(rs));
             }
             return ordre;
 
         }
-    
     }
     
 
@@ -108,7 +107,7 @@ public class DALProduktionDBManager extends DALBelmanDBManager {
 
             while (rs.next())
             {              
-                matordre.add(getOneOrder(rs));
+                matordre.add(getOneProductionOrder(rs));
             }
             return matordre;
         }
@@ -118,11 +117,15 @@ public class DALProduktionDBManager extends DALBelmanDBManager {
     {
         try (Connection con = ds.getConnection())
         {
-            String sql ="SELECT ProductionOrder.sOrderId, ProductionOrder.pOrder, "
-                        +"ProductionOrder.dueDate, ProductionOrder.quantity, CoilType.code, "
-                        +"ProductionOrder.[status], ProductionOrder.urgent, StockItem.[length], CoilType.width, "
+            String sql ="SELECT ProductionOrder.sOrderId, "
+                        +"ProductionOrder.pOrder, "
+                        +"ProductionOrder.dueDate, ProductionOrder.quantity, "
+                        +"CoilType.code, "
+                        +"ProductionOrder.[status], ProductionOrder.urgent, "
+                        +"StockItem.[length], CoilType.width, "
                         +"Sleeve.Employeeid "
-                        +"FROM ProductionOrder, Material, Sleeve, StockItem, CoilType "
+                        +"FROM ProductionOrder, Material, Sleeve, "
+                        +"StockItem, CoilType "
                         +"WHERE CoilType.code = ? "
                         +"AND CoilType.id = StockItem.coilTypeId "
                         +"AND CoilType.materialId = Material.id "
@@ -140,13 +143,13 @@ public class DALProduktionDBManager extends DALBelmanDBManager {
 
             while (rs.next())
             {
-                order.add(getOneOrder(rs));
+                order.add(getOneProductionOrder(rs));
             }
             return order;
         }
     }
     
-    public BEProduktion getOneOrder(ResultSet rs) throws SQLException
+    public BEProduktion getOneProductionOrder(ResultSet rs) throws SQLException
     {
         int sOrderID = rs.getInt(SORDERID);
         String pOrder = rs.getString(PORDER);

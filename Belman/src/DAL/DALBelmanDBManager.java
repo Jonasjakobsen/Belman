@@ -14,6 +14,14 @@ import java.util.Properties;
  */
 public abstract class DALBelmanDBManager
 {
+     private static final String SERVER = "SERVER";
+     private static final String INSTANCENAME = "INSTANCENAME";
+     private static final String PORT = "PORT";
+     private static final String DATABASE = "DATABASE";
+     private static final String USER = "USER";
+     private static final String PASSWORD = "PASSWORD";
+     
+    
      protected SQLServerDataSource ds;
 
     /**
@@ -29,12 +37,11 @@ public abstract class DALBelmanDBManager
 
         ds = new SQLServerDataSource();
 
-        ds.setServerName(props.getProperty("SERVER"));
-        ds.setInstanceName(props.getProperty("INSTANCENAME"));
-        ds.setPortNumber(Integer.parseInt(props.getProperty("PORT")));
-        ds.setDatabaseName(props.getProperty("DATABASE"));
-        ds.setUser(props.getProperty("USER"));
-        ds.setPassword(props.getProperty("PASSWORD"));
+        ds.setServerName(props.getProperty(SERVER));
+        ds.setInstanceName(props.getProperty(INSTANCENAME));
+        ds.setPortNumber(Integer.parseInt(props.getProperty(PORT)));
+        ds.setDatabaseName(props.getProperty(DATABASE));
+        ds.setUser(props.getProperty(USER));
+        ds.setPassword(props.getProperty(PASSWORD));
     }
-    
 }

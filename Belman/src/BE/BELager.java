@@ -96,7 +96,8 @@ public class BELager {
      * @param StockQuantity - The amount in stock on the coil.
      * @param produktion - Getting the constructor from the BEProduktion class.
      */
-    public BELager(int id, String Code, Float MaterialDensity, Float StockQuantity, BEProduktion produktion) {
+    public BELager(int id, String Code, Float MaterialDensity, 
+                   Float StockQuantity, BEProduktion produktion) {
         this.id = id;
         this.Code = Code;
         this.MaterialDensity = MaterialDensity;        

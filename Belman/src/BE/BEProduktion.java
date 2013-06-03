@@ -19,7 +19,7 @@ public class BEProduktion {
     private boolean Urgent;
     private Date DueDate;
     private float Quantity;
-    private float MaterialID;
+    private int MaterialID;
     private float Thickness;
     private float Width;
     private float Circumference;
@@ -49,7 +49,7 @@ public class BEProduktion {
      */
     public BEProduktion (int SOrderID, String SOrder, int POrderID, 
                         String POrder, boolean Urgent, Date DueDate, Float Quantity,
-                        Float MaterialID, Float Thickness, Float Width,
+                        int MaterialID, Float Thickness, Float Width,
                         Float Circumference, String coilCode)
     {
         this.SOrderID = SOrderID;
@@ -158,7 +158,7 @@ public class BEProduktion {
     /**
      * @return the MaterialID
      */
-    public float getMaterialID() {
+    public int getMaterialID() {
         return MaterialID;
     }
 

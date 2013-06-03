@@ -28,6 +28,10 @@ public class LagerTableModel extends AbstractTableModel
     };
     private ArrayList<BELager> lager;
     
+    /**
+     * Creates a new BLLLagermanager, to be able to run the methods from the 
+     * BLLLagerManager in the LagerTable Model.
+     */
     public LagerTableModel()
     {
         try
